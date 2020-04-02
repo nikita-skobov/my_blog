@@ -17,6 +17,7 @@ const markdownContent = fs.readFileSync(absolutePathToFile, { encoding: 'UTF-8' 
 // title and the rest of the article
 const lineSplit = markdownContent.split('\n')
 const markdownTitle = lineSplit.shift()
+const tags = lineSplit.shift()
 const restOfMarkdown = lineSplit.join('\n')
 const rightNow = new Date()
 const month = rightNow.toLocaleString('default', {
@@ -39,9 +40,26 @@ const dateStr = `${month} ${day}, ${year} ${time}`
 const name = 'Nikita Skobov'
 const nameURL = 'https://nikitas.link'
 const blogNameAndDate = `<span style="color: #92979b; font-size: 16px"><a style="font-weight: bold; color: #92979b" href="${nameURL}">${name}</a> - ${dateStr}</span>`
+
+const tagWord = '<span style="font-size: 14px">tags: </span><br />'
+const renderTag = (tag) => `<span style="font-size: 14px"><a href="#">${tag}</a></span>`
+const tagStr = tags.split(',').reduce((prev, current, index) => {
+    return index === 1 ? `${renderTag(prev)} ${renderTag(current)}` :`${prev} ${renderTag(current)}`
+})
+
 const blogFormattedContent = `${markdownTitle}
 ${blogNameAndDate}
 ${restOfMarkdown}
+
+
+${tagWord}
+${tagStr}
+
+About me:
+
+> I am Nikita Skobov. I like to make things.<br>
+> Contact me via email: skobo002@umn.edu<br>
+> Check out my projects: https://github.com/nikita-skobov<br>
 `
 
 const markdownRendered = marked(blogFormattedContent, {
@@ -63,6 +81,9 @@ const myhtml = `<!DOCTYPE html>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/night-owl.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <style>
+        div.markdown-body {
+            margin-bottom: 100px !important;
+        }
         .markdown-body h1, .markdown-body h2 {
             border-bottom: none !important;
         }
@@ -87,7 +108,8 @@ const myhtml = `<!DOCTYPE html>
             font-style: normal !important;
         }
         div.markdown-body {
-            margin: auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
 
         /* Extra small devices (phones, 600px and down) */
