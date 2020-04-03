@@ -52,12 +52,14 @@ ${blogNameAndDate}
 ${restOfMarkdown}
 
 
+<div style="line-height: 1.5 !important">
 ${tagWord}
 ${tagStr}
+</div>
 
 About me:
 
-> I am Nikita Skobov. I like to make things.<br>
+> I am Nikita Skobov.<br>
 > Contact me via email: skobo002@umn.edu<br>
 > Check out my projects: https://github.com/nikita-skobov<br>
 `
@@ -96,9 +98,14 @@ const myhtml = `<!DOCTYPE html>
         h2, h3, h4, h5, h6 {
             font-size: 2.5em !important;
         }
-        p, li, input, code {
+        p, li, input {
             font-weight: 300 !important;
             line-height: 2.1 !important;
+            font-size: 20px !important;
+        }
+        code {
+            font-weight: 300 !important;
+            line-height: 1.1 !important;
             font-size: 20px !important;
         }
         pre {
