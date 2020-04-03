@@ -37,6 +37,8 @@ const dateStr = `${month} ${day}, ${year} ${time}`
 // let "user" pass in option of name, name url,
 // date format?
 // name/date color?
+const blogHome = 'Nikita&#39;s blog'
+const blogHomeURL = 'https://blog.nikitas.link'
 const name = 'Nikita Skobov'
 const nameURL = 'https://nikitas.link'
 const blogNameAndDate = `<span style="color: #92979b; font-size: 16px"><a style="font-weight: bold; color: #92979b" href="${nameURL}">${name}</a> - ${dateStr}</span>`
@@ -62,6 +64,7 @@ About me:
 > I am Nikita Skobov.<br>
 > Contact me via email: skobo002@umn.edu<br>
 > Check out my projects: https://github.com/nikita-skobov<br>
+> Check out my other blogs: ${blogHomeURL}<br>
 `
 
 const markdownRendered = marked(blogFormattedContent, {
@@ -83,6 +86,9 @@ const myhtml = `<!DOCTYPE html>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/night-owl.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <style>
+        .markdown-body>:first-child {
+            margin-top: 0.5em !important;
+        }
         div.markdown-body {
             margin-bottom: 100px !important;
         }
@@ -154,9 +160,40 @@ const myhtml = `<!DOCTYPE html>
                 max-width: 880px !important;
             }
         }
+
+        .navbar {
+            min-height: 60px !important;
+            background-color: black;
+            position: relative;
+        }
+        html, body {
+            margin: 0;
+        }
+        .blog-title {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 0;
+            border-bottom: none;
+            text-decoration: none;
+        }
+        .wrapper {
+            padding-left: 30px;
+            padding-right: 30px;
+            position: absolute;
+            width: 95%;
+            top: 50%;
+            margin: auto;
+            text-align: center;
+            transform: translate(0, -50%);
+        }
     </style>
 </head>
 <body>
+    <header class="navbar">
+        <div class="wrapper">
+            <a class="blog-title" href="${blogHomeURL}">${blogHome}</a>
+        </div>
+    </header>
     <div class="markdown-body">
         ${markdownRendered}
     </div>
