@@ -17,6 +17,7 @@ const markdownContent = fs.readFileSync(absolutePathToFile, { encoding: 'UTF-8' 
 // title and the rest of the article
 const lineSplit = markdownContent.split('\n')
 const markdownTitle = lineSplit.shift()
+const titleWithoutHashtag = markdownTitle.substr(2)
 const tags = lineSplit.shift()
 const restOfMarkdown = lineSplit.join('\n')
 const rightNow = new Date()
@@ -37,7 +38,7 @@ const dateStr = `${month} ${day}, ${year} ${time}`
 // let "user" pass in option of name, name url,
 // date format?
 // name/date color?
-const blogHome = 'Nikita&#39;s blog'
+const blogHome = 'Nikita\'s blog'
 const blogHomeURL = 'https://blog.nikitas.link'
 const name = 'Nikita Skobov'
 const nameURL = 'https://nikitas.link'
@@ -49,15 +50,74 @@ const tagStr = tags.split(',').reduce((prev, current, index) => {
     return index === 1 ? `${renderTag(prev)} ${renderTag(current)}` :`${prev} ${renderTag(current)}`
 })
 
+// make meta tags:
+let metaTagString = ''
+const renderMetaTag = (tag) => `<meta property="article:tag" content="${tag}">`
+const tagList = tags.split(',')
+for (let i = 0; i < tagList.length; i += 1) {
+    metaTagString = `${metaTagString}${renderMetaTag(tagList[i])}\n    `
+}
+
+
+// find first paragraph
+let firstParagraph = ''
+const markdownSections = restOfMarkdown.split('\n').filter(a => a !== '')
+let isCode = 0
+for (let i = 0; i < markdownSections.length; i += 1) {
+    const section = markdownSections[i]
+    if (isCode && section.includes('```')) {
+        // if we are within a code block,
+        // and then we find the end of the code block
+        // stop treating it as a code block:
+        isCode = 0
+        continue
+    }
+    if (section.includes('```')) {
+        // found a code block, ignore next several lines
+        isCode = 1
+        continue
+    }
+    if (isCode) {
+        continue
+    }
+
+    const isAlphabetical = /^[a-z]+$/i
+    if (isAlphabetical.test(section.charAt(0))) {
+        // found first paragraph
+        firstParagraph = section
+        break
+    }
+}
+// only take the first 160 characters of the first paragraph by sentences:
+let numChars = 0
+let description = ''
+const firstSentences = firstParagraph.split('.')
+for (let i = 0; i < firstSentences.length; i += 1) {
+    description = `${description}${firstSentences[i]}.`
+    numChars += firstSentences[i].length
+    if (numChars >= 160) {
+        break
+    }
+}
+
+let blogFileName = titleWithoutHashtag.toLowerCase()
+blogFileName = blogFileName.replace(/\s+/g, '-')
+blogFileName = blogFileName.replace(/\'+/g, '')
+blogFileName = blogFileName.replace(/,+/g, '')
+// TODO:
+// add tag system:
+/*
+<div style="line-height: 1.5 !important">
+${tagWord}
+${tagStr}
+</div>
+*/
+
 const blogFormattedContent = `${markdownTitle}
 ${blogNameAndDate}
 ${restOfMarkdown}
 
 
-<div style="line-height: 1.5 !important">
-${tagWord}
-${tagStr}
-</div>
 
 About me:
 
@@ -82,7 +142,20 @@ const myhtml = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${titleWithoutHashtag}</title>
+    <meta name="HandheldFriendly" content="True">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" href="${blogHomeURL}/${blogFileName}">
+    <meta property="og:site_name" content="${blogHome}">
+    <meta property="og:title" content="${titleWithoutHashtag}">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="${description}">
+    <meta property="og:url" content="${blogHomeURL}/${blogFileName}">
+    <meta property="article:published_time" content="${rightNow.toISOString()}">
+    <meta property="article:modified_time" content="${rightNow.toISOString()}">
+    ${metaTagString}
+    <meta property="article:publisher" content="${nameURL}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/night-owl.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <style>
