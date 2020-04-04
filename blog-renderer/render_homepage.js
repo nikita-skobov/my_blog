@@ -15,8 +15,8 @@ const rightNow = new Date()
 const blogs = []
 
 for (let i = 0; i < args.length; i += 1) {
-    if (i % 2 == 0) {
-        // the even ones are the titles:
+    if (i % 3 == 0) {
+        // these are the titles:
         const titleWithoutHashtag = args[i].substr(2)
         let blogFileName = titleWithoutHashtag.toLowerCase()
         blogFileName = blogFileName.replace(/\s+/g, '-')
@@ -26,14 +26,27 @@ for (let i = 0; i < args.length; i += 1) {
             title: titleWithoutHashtag,
             path: blogFileName,
         })
-    } else {
-        // the odd ones are the tags
+    } else if (i % 3 == 1) {
+        // these are the tags
         blogs[blogs.length - 1].tags = args[i].split(',')
+    } else if (i % 3 == 2) {
+        // these are the timestamps (in epoch seconds)
+        const timestampNumber = parseInt(args[i], 10)
+        const date = new Date(timestampNumber * 1000)
+
+        const month = date.toLocaleString('default', {
+            month: 'long',
+        })
+        const day = date.getDate()
+        const year = date.getFullYear()
+        const dateStr = `${month} ${day}, ${year}`
+
+        blogs[blogs.length - 1].dateStr = dateStr
     }
 }
 
 const renderBlogPostLink = (blogObj) => {
-    return `<a href="${blogHomeURL}/${blogObj.path}">${blogObj.title}</a>`
+    return `<a href="${blogHomeURL}/${blogObj.path}">${blogObj.dateStr} - ${blogObj.title}</a>`
 }
 let blogListHTMLString = ''
 blogs.forEach((blogObj) => {
