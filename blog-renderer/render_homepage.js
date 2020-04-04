@@ -46,7 +46,7 @@ for (let i = 0; i < args.length; i += 1) {
 }
 
 const renderBlogPostLink = (blogObj) => {
-    return `<a href="${blogHomeURL}/${blogObj.path}">${blogObj.dateStr} - ${blogObj.title}</a>`
+    return `<div class="bloglink"><a href="${blogHomeURL}/${blogObj.path}">${blogObj.dateStr} - ${blogObj.title}</a></div>`
 }
 let blogListHTMLString = ''
 blogs.forEach((blogObj) => {
@@ -71,6 +71,12 @@ const myhtml = `<!DOCTYPE html>
     <meta property="article:modified_time" content="${rightNow.toISOString()}">
     <meta property="article:publisher" content="${nameURL}">
     <style>
+        .bloglink {
+            text-align: center !important;
+            font-weight: 300 !important;
+            line-height: 2.1 !important;
+            font-size: 20px !important;
+        }
         h1 {
             font-size: 3.2em !important;
             font-weight: 600 !important;
