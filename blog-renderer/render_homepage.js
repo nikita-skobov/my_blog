@@ -32,7 +32,7 @@ for (let i = 0; i < args.length; i += 1) {
     }
 }
 
-renderBlogPostLink = (blogObj) => {
+const renderBlogPostLink = (blogObj) => {
     return `<a href="${blogHomeURL}/${blogObj.path}">${blogObj.title}</a>`
 }
 let blogListHTMLString = ''
