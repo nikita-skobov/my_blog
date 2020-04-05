@@ -1,29 +1,16 @@
-# Title of blog
-something,sometag,yolo tag with spaces,another tag
+# Hello World
+hello world,first,blog,intro
 
-![my_image](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftctechcrunch2011.files.wordpress.com%2F2017%2F09%2Fgettyimages-484267214.jpg&f=1&nofb=1)
+![hello_world](https://blog.nikitas.link/earth.jpg)
 
-- [ ] do checkbox work?
-- [X] yes!
+This is my first blog. In the future I will add a description of how this blog will work, and how it gets updated. But as of right now, not all of the features are there. Below is a checkbox list of what is done, and what I need to do:
 
-If you’ve been reading up on web technologies lately, then odds are you’ve heard of/read about/learned React.js already. One of the major complaints that was always repeated about React was how difficult it was to get started building an application. There are, of course, ways around this. First, you could just use a CDN link to React inside of your webpage and instantly have the ability to use React, but without some other niceties that come with a proper React development environment. Learning Webpack/Brunch/Browserify/etc, h:
+- [X] implement custom markdown rendering
+- [X] create script that can detect BLOG.md files from git commit history
+- [X] output files with "nice" styling
+- [X] add basic SEO tags
+- [ ] make it open source
+- [ ] write about how it works
+- [ ] implement tag system
+- [ ] more...
 
-```sh
-# comment1
-# comment2
-world="world"
-echo "hello $world"
-
-```
-
-```js
-// comment lul
-
-let time = rightNow.toLocaleTimeString('default', {
-    hour: '2-digit',
-    minute: '2-digit',
-})
-```
-
-
-<!-- bunch of space: -->
