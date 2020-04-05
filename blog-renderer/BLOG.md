@@ -13,4 +13,3 @@ This is my first blog. In the future I will add a description of how this blog w
 - [ ] write about how it works
 - [ ] implement tag system
 - [ ] more...
-
