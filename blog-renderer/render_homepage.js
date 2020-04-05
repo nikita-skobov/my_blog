@@ -121,6 +121,7 @@ const myhtml = `<!DOCTYPE html>
         }
         html, body {
             margin: 0;
+            overflow-x: hidden !important;
         }
         .blog-title {
             color: white;
@@ -145,6 +146,7 @@ const myhtml = `<!DOCTYPE html>
             width: 460px;
             margin-top: 1em;
             margin-bottom: 1em;
+            max-width: 92%;
         }
     </style>
 </head>

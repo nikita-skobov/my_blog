@@ -201,8 +201,8 @@ const myhtml = `<!DOCTYPE html>
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px) {
             div.markdown-body {
-                margin-left: 5px !important;
-                margin-right: 5px !important;
+                margin-left: 15px !important;
+                margin-right: 15px !important;
             }
         }
 
@@ -241,6 +241,7 @@ const myhtml = `<!DOCTYPE html>
         }
         html, body {
             margin: 0;
+            overflow-x: hidden !important;
         }
         .blog-title {
             color: white;
