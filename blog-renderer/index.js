@@ -182,6 +182,11 @@ const myhtml = `<!DOCTYPE html>
             line-height: 2.1 !important;
             font-size: 20px !important;
         }
+        p img {
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
         code {
             font-weight: 300 !important;
             line-height: 1.1 !important;
