@@ -42,8 +42,14 @@ for (let i = 0; i < args.length; i += 1) {
         const dateStr = `${month} ${day}, ${year}`
 
         blogs[blogs.length - 1].dateStr = dateStr
+        blogs[blogs.length - 1].dateNum = timestampNumber
     }
 }
+
+// sort by newest date first:
+blogs.sort((a, b) => {
+    return b.dateNum - a.dateNum
+})
 
 const renderBlogPostLink = (blogObj) => {
     return `<div class="bloglink"><a class="abloglink" href="${blogHomeURL}/${blogObj.path}">${blogObj.dateStr} - ${blogObj.title}</a></div>`
