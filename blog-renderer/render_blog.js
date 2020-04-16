@@ -1,6 +1,6 @@
-import marked from 'marked'
-import hljs from 'highlight.js'
-import fs from 'fs'
+const marked = require('marked')
+const hljs = require('highlight.js')
+const fs = require('fs')
 
 const args = process.argv.slice(2)
 const absolutePathToFile = args[0]
@@ -8,6 +8,17 @@ if (!absolutePathToFile) {
     console.error('Must provide a single argument: an absolute path to a .md file that will be rendered')
     process.exit()
 }
+
+const blogConfigPath = process.env.BLOG_CONFIG || `${__dirname}/blog_config.json`
+
+let blogConfig
+try {
+    blogConfig = require(blogConfigPath)
+} catch (e) {
+    console.error(`FAILED TO FIND BLOG CONFIG: ${blogConfigPath}`)
+    blogConfig = {}
+}
+
 
 const renderer = new marked.Renderer()
 const markdownContent = fs.readFileSync(absolutePathToFile, { encoding: 'UTF-8' })
@@ -34,14 +45,26 @@ let time = rightNow.toLocaleTimeString('default', {
 if (time.charAt(0) === '0') time = time.substr(1)
 const dateStr = `${month} ${day}, ${year} ${time}`
 
-// TODO: make this dynamic
-// let "user" pass in option of name, name url,
-// date format?
-// name/date color?
-const blogHome = 'Nikita\'s blog'
-const blogHomeURL = 'https://blog.nikitas.link'
-const name = 'Nikita Skobov'
-const nameURL = 'https://nikitas.link'
+let {
+    blogHome = "Default Blog Name!",
+    blogHomeURL = "https://example.com",
+    name = "Default Blogger Name!",
+    email = "default@email.com",
+    nameURL = "https://example.com",
+    projectsURL = "https://github.com/username",
+    aboutMe = '',
+} = blogConfig
+
+if (aboutMe === '') {
+    aboutMe = `
+About me:
+
+> I am ${name}.<br>
+> Contact me via email: ${email}<br>
+> Check out my projects: ${projectsURL}<br>
+> Check out my other blogs: ${blogHomeURL}<br>`
+}
+
 const blogNameAndDate = `<span style="color: #92979b; font-size: 16px"><a style="font-weight: bold; color: #92979b" href="${nameURL}">${name}</a> - ${dateStr}</span>`
 
 const tagWord = '<span style="font-size: 14px">tags: </span><br />'
@@ -119,12 +142,7 @@ ${restOfMarkdown}
 
 
 
-About me:
-
-> I am Nikita Skobov.<br>
-> Contact me via email: skobo002@umn.edu<br>
-> Check out my projects: https://github.com/nikita-skobov<br>
-> Check out my other blogs: ${blogHomeURL}<br>
+${aboutMe}
 `
 
 const markdownRendered = marked(blogFormattedContent, {

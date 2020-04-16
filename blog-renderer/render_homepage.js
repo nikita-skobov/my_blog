@@ -1,14 +1,28 @@
-import marked from 'marked'
-import hljs from 'highlight.js'
-import fs from 'fs'
+const marked = require('marked')
+const hljs = require('highlight.js')
+const fs = require('fs')
 
 const args = process.argv.slice(2)
 
-const blogHome = 'Nikita\'s blog'
-const blogHomeURL = 'https://blog.nikitas.link'
-const name = 'Nikita Skobov'
-const nameURL = 'https://nikitas.link'
-const description = 'My name is Nikita Skobov and this is my blog. I am a student of statistics, and computer science at the University of Minnesota. Sometimes I write code for fun.'
+
+const blogConfigPath = process.env.BLOG_CONFIG || `${__dirname}/blog_config.json`
+
+let blogConfig
+try {
+    blogConfig = require(blogConfigPath)
+} catch (e) {
+    console.error(`FAILED TO FIND BLOG CONFIG: ${blogConfigPath}`)
+    blogConfig = {}
+}
+
+
+let {
+    blogHome = "Default Blog Name!",
+    blogHomeURL = "https://example.com",
+    nameURL = "https://example.com",
+    description = 'default description'
+} = blogConfig
+
 
 const rightNow = new Date()
 

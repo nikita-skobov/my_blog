@@ -20,6 +20,5 @@
   "dependencies": {
     "highlight.js": "^9.18.1",
     "marked": "^0.8.2"
-  },
-  "type": "module"
+  }
 }
