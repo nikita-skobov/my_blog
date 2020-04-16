@@ -11,9 +11,14 @@ For more information about how it renders, see the blog-renderer directory READM
 ```sh
 git clone https://github.com/nikita-skobov/my_blog
 cd my_blog
+cd blog-renderer
 npm install --save
+cd ..
 absolute_path_to_script=$(readlink -e update_blogs.sh)
 sudo ln -sf "$absolute_path_to_script" /usr/local/bin/update_blogs
+
+# make sure it is executable
+sudo chmod +x /usr/local/bin/update_blogs
 
 # you will need to remember where the blog-renderer folder is
 # installed:
