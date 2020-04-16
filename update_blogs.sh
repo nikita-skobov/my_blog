@@ -79,7 +79,7 @@ blog_post_match="BLOG.md"
 blog_renderer_location="$1"
 
 if [[ ! -z $BLOG_CONFIG ]]; then
-    blog_config_name="${BLOG_CONFIG#*/}"
+    blog_config_name="${BLOG_CONFIG##*/}"
     BLOG_CONFIG=$(get_absolute_path_of_directory "$BLOG_CONFIG")
     BLOG_CONFIG="$BLOG_CONFIG/$blog_config_name"
 fi
