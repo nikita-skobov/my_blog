@@ -45,7 +45,7 @@ This is a rather cumbersome command to run especially if you have many blogs, wh
 
 ## blog_config
 
-The blog_config.json file defines the configuration for your blog such as the name of the blog, the links, the descriptions, etc. JSON files cannot have comments, but I have provided the below pseudo-json code to demonstrate which options go where on the rendered blog. Please note that this single config file is used for both render_homepage, AND render_blog, so some of the options are used for both.
+The blog_config.json file defines the configuration for your blog such as the name of the blog, the links, the descriptions, etc. JSON files cannot have comments, but I have provided the below pseudo-json code to demonstrate which options go where on the rendered blog. Please note that this single config file is used for both render_homepage, AND render_blog, so some of the options are used for both. An actual, working blog_config.json is provided in the repository (that I use for my blogposts) for you to see how it works, and to modify as needed.
 
 ```json
 {
@@ -60,12 +60,12 @@ The blog_config.json file defines the configuration for your blog such as the na
     // used for:
     // the title of the navbar at the top
     // also used for some meta tags like og:sitename
-    "blogHome": "Nikita's Blog",
+    "blogHome": "My Blog Title",
 
     // used for:
     // the actual link of the blogHome navbar
     // also used for some meta tags like link rel:canonical
-    "blogHomeURL": "https://blog.nikitas.link",
+    "blogHomeURL": "https://myblog.mywebsite.com",
 
 
     // ONLY USED FOR render_blog
@@ -74,19 +74,19 @@ The blog_config.json file defines the configuration for your blog such as the na
     // under each blog post it says who made the post
     // so the name option is what shows up, and nameURL is
     // the link that corresponds to this text
-    "name": "Nikita Skobov",
+    "name": "Person McPersonson",
 
     // used for:
     // if no "aboutMe" is provided, a default aboutMe
     // is created and it uses projectsURL to say
     // where more of your projects can be found
-    "projectsURL": "https://github.com/nikita-skobov",
+    "projectsURL": "https://github.com/myusername",
 
     // used for:
     // if no "aboutMe" is provided, a default aboutMe
     // is created and it uses email to say
     // how you can be contacted
-    "email": "skobo002@umn.edu",
+    "email": "me@email.com",
 
     // used for:
     // under every blog post, an about the author section
