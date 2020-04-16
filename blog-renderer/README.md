@@ -4,6 +4,7 @@ This library provides two scripts:
 - render_blog
 - render_homepage
 
+Both of these scripts render some html text that is formatted via some options. This html template, and css is hardcoded into the render_blog and render_homepage scripts. If you want to modify the styling of your blog, modify the code within those files.
 
 ## Render Blog
 
@@ -103,9 +104,11 @@ The blog_config.json file defines the configuration for your blog such as the na
 
 ```
 
-# goals:
+# Future Goals:
 
 - [X] customize renderer library to output fancy code brackets
 - [ ] a dropdown to view edited versions
 - [X] BIG FONT SIZE
 - [ ] "good" SEO tags (lol how)
+- [ ] categorize blog posts on homepage via their tags
+- [ ] allow users to use their own html templates without having to edit the actual scripts
