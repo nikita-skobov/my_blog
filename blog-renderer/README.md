@@ -47,7 +47,7 @@ This is a rather cumbersome command to run especially if you have many blogs, wh
 
 The blog_config.json file defines the configuration for your blog such as the name of the blog, the links, the descriptions, etc. JSON files cannot have comments, but I have provided the below pseudo-json code to demonstrate which options go where on the rendered blog. Please note that this single config file is used for both render_homepage, AND render_blog, so some of the options are used for both. An actual, working blog_config.json is provided in the repository (that I use for my blogposts) for you to see how it works, and to modify as needed.
 
-```json
+```js
 {
     // USED FOR BOTH render_blog and render_homepage:
 
