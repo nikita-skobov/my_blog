@@ -43,7 +43,9 @@ let time = rightNow.toLocaleTimeString('default', {
 })
 // remove leading 0 if present
 if (time.charAt(0) === '0') time = time.substr(1)
-const dateStr = `${month} ${day}, ${year} ${time}`
+// I think it looks better without time:
+const dateStr = `${month} ${day}, ${year}`
+// const dateStr = `${month} ${day}, ${year} ${time}`
 
 let {
     blogHome = "Default Blog Name!",
