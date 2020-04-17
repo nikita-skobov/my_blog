@@ -62,7 +62,7 @@ About me:
 > I am ${name}.<br>
 > Contact me via email: ${email}<br>
 > Check out my projects: ${projectsURL}<br>
-> Check out my other blogs: ${blogHomeURL}<br>`
+> Check out my other blog posts: ${blogHomeURL}<br>`
 }
 
 const blogNameAndDate = `<span style="color: #92979b; font-size: 16px"><a style="font-weight: bold; color: #92979b" href="${nameURL}">${name}</a> - ${dateStr}</span>`
