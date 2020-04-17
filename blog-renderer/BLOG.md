@@ -30,7 +30,6 @@ The first two points are the most important. The first is important because Mark
 
 
 
-
 ##### How it works
 
 The blog renderer has two main parts
