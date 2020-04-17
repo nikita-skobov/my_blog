@@ -5,7 +5,7 @@ hello world,first,blog,render,renderer
 
 A lot of times when I get stuck on some problem I search for solutions online, and a lot of times I find really specific solutions in the form of blog posts. Occasionally, I find a solution myself, so I got the idea that I should start a blog and post about:
 
-- Solutions that I find, to help others with similar issues
+- Issues that I've found solutions to
 - Projects that I've made/working on
 - Interesting things I find that I feel like sharing
 - Maybe more?
