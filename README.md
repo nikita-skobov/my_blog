@@ -1,4 +1,4 @@
-# My blog
+# my_blog
 
 This repo contains the rendering and updating code that I use to render my blog. 
 
