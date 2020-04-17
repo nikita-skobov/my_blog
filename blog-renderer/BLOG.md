@@ -14,25 +14,29 @@ And since this is my hello-world blog post, what I am interested in sharing is h
 
 ## My Custom Blog Renderer
 
-I know there's a variety of publishing software out there that do what my custom solution does and more, but I wanted a couple specific things, and I thought the best way (and most fun way) would be to make my own solution. Here's what I wanted my blog renderer to be able to do:
+I wrote a set of blog rendering and publishing scripts that allow me to write blogs in Markdown format, and publish them with a click of a button.
+I know there's a variety of publishing software out there that do similar things, but I wanted a couple specific features, and I thought the best way (and most fun way) would be to make my own solution. Here's what I wanted the blog renderer to be able to do:
 
 - [X] Blog posts written and rendered via GitHub flavored Markdown
-- [X] Blog posts get published after they get comitted to my monorepo
+- [X] Blog posts are published after they are comitted to my monorepo
+- [X] Automatically fill in the date/contact information
+- [ ] Ability to sort/filter blog posts by category
 - [ ] Custom Markdown plugins for things I want to add in the future
-    - [ ] collapsable code sections
-    - [ ] easy format directory structures
-- [ ] Highlighting like Medium has
+    - [ ] Collapsable code sections
+    - [ ] Easy format directory structures
 
 
-The most important parts being the first two. The reason I came up with these specifications is because when I write code in my monorepo, sometimes I find solutions to particular problems, and I want to document my solution **in the directory where it is most relevant.** And the best way that I know of to write a somewhat nice-looking file is via Markdown.
+The first two points are the most important. The first is important because Markdown allows me to easily write nicely styled pages. And the idea behind the second point is that when I write code in my monorepo, **I want to document solutions closest to where they are relevant**.
 
 
 
 
-##### There are two parts to my blog renderer:
+##### How it works
 
-- The rendering script that takes a BLOG.md file and outputs a blog.html
-- The update script that finds all BLOG.md files that have changed since the last commit.
+The blog renderer has two main parts
+
+- The rendering script that takes a `BLOG.md` file and outputs a `blog.html`
+- The update script that finds all `BLOG.md` files that have changed since the last commit.
 
 The rendering script is not all that interesting. If I break it down into pseudo code it looks something like this:
 
@@ -66,7 +70,7 @@ console.log(myHtml)
 ```
 
 
-But the more interesting part in my opinion is my `update_blog` shell script. It is fairly long, so again I will only provide the pseudo code here, but the full code is available [here](https://github.com/nikita-skobov/my_blog) 
+But the far more interesting part is the `update_blog` shell script. It is fairly long, so again I will only provide the pseudo code here, but the full code is available [here](https://github.com/nikita-skobov/my_blog) 
 
 
 ```sh
@@ -106,14 +110,14 @@ git merge "$current_branch_name"
 git checkout "$current_branch_name"
 ```
 
-Again, the real code is a lot more complicated and it also renders the homepage which has links to all the existing blogs (that's why we need to get all_blog_files).
+Again, the real code is a lot more complicated and it also renders the homepage which has links to all the existing blogs (that's why we need to get `all_blog_files`).
 
-The important part is that the blogs branch is just a slightly behind version of master (or any other branch where blog posts are made), and the blogs branch can simply be fast forwarded every time there is a new/updated blog post. This way, the next time that update_blogs is ran, there is no need to re-render old BLOG.md files. This is necessary because when this script outputs its files, **it should only output files that need to be sent to the webserver.** This keeps data transmission costs at a minimum, and makes deployment easy because you can just deploy all of the files that it outputs.
+The important part is that the `blogs` branch is just a slightly behind version of master (or any other branch where blog posts are made), and the `blogs` branch can simply be fast forwarded every time there is a new/updated blog post. This way, the next time that update_blogs is ran, there is no need to re-render old `BLOG.md` files. This is necessary because when this script outputs its files, **it should only output files that need to be sent to the webserver.** This keeps data transmission costs at a minimum, and makes deployment easy because you can just deploy all of the files that it outputs.
 
 At the time of writing this, the core functionality that I want exists, and I look forward to writing blog posts in the future. But I will keep working on this project from time to time, and adding some features when I need them. Below is a checklist of things I've added, and things I want to add.
 
 - [X] implement custom markdown rendering
-- [X] create script that can detect BLOG.md files from git commit history
+- [X] create script that can detect `BLOG.md` files from git commit history
 - [X] output files with "nice" styling
 - [X] add basic SEO tags
 - [X] make it open source
@@ -122,4 +126,3 @@ At the time of writing this, the core functionality that I want exists, and I lo
 - [X] center images
 - [ ] Medium style highlighting
 - [ ] collapsable code sections
-
