@@ -179,6 +179,15 @@ const myhtml = `<!DOCTYPE html>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/night-owl.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
     <style>
+        /* support dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #222831 !important;
+            }
+            .markdown-body {
+                color: #eeeeee !important;
+            }
+        }
         .markdown-body>:first-child {
             margin-top: 0.5em !important;
         }
