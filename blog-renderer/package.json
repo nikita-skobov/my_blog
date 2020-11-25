@@ -18,7 +18,7 @@
   "author": "Nikita Skobov",
   "license": "AGPL-3.0",
   "dependencies": {
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.1.2",
     "marked": "^0.8.2"
   }
 }
