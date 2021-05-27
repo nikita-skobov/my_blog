@@ -1,3 +1,7 @@
+# Update May 2021
+
+This repository contains the scripts I used to use to update/maintain my blog. They were rather cumbersome and hack-ish and in May 2021 I decided to rewrite it in rust. I now use: [blog-updater](https://github.com/nikita-skobov/blog-updater) instead. It's still quite new and experimental, but it has some nice options by default and is much easier to use than this repository. So I am now archiving `my_blog` in favor of `blog-updater`.
+
 # my_blog
 
 This repo contains the rendering and updating code that I use to render my blog. 
